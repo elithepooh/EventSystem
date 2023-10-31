@@ -1,6 +1,6 @@
 # Event System for a 2D Game Engine in C++11
 
-A basic data-oriented event system. The focus is on making the addition of new event types and listeners as simple as possible. The dipatcher has functionality for processing the events of only a particular type. 
+This is a basic data-oriented event system. The focus is on making the addition of new event types and listeners as simple as possible. The dispatcher has functionality for processing the events of only a particular type. 
 
 ## Overview
 
