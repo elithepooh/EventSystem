@@ -3,8 +3,13 @@ project(EventSystem)
 
 set(CMAKE_CXX_STANDARD 11)
 
+include_directories(include)
 
-# Your source files
-set(SOURCE_FILES event_system.cpp player.cpp tests.cpp)
+# Add all the .cpp files in the src directory to the build
+file(GLOB SOURCES "src/*.cpp" tests.cpp)
 
-add_executable(EventSystem ${SOURCE_FILES})
+# Add the executable
+add_executable(runTests ${SOURCES})
+
+
+

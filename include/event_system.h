@@ -25,8 +25,7 @@ private:
 
 using EventListener = std::function<void(const Event&)>;
 using ListenerID = std::size_t;
-// Listeners have id for ease of removal
-using EventListenerPair = std::pair<ListenerID, EventListener>; 
+using EventListenerPair = std::pair<ListenerID, EventListener>; // Listeners have id for ease of removal 
 
 
 class EventDispatcher {
@@ -38,8 +37,7 @@ public:
     void processEventsOfType(int eventType);
 
 private:
-    // There is a separate vector of listeners for each event type
-    std::map<int, std::vector<EventListenerPair> > listeners; 
+    std::map<int, std::vector<EventListenerPair> > listeners; // There is a separate vector of listeners for each event type
     std::queue<std::shared_ptr<Event>> eventQueue;
 
 };

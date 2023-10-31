@@ -2,6 +2,7 @@
 #define EVENT_TYPES_H
 
 #include "event_system.h"
+//#include <iostream>
 
 struct PlayerInputEvent : public Event {
     enum class Action {
@@ -23,6 +24,20 @@ struct PlayerInputEvent : public Event {
         return std::make_shared<PlayerInputEvent>(*this);
     }
 
+
+/*
+    const std::string printAction() const {
+        switch(action) {
+            case Action::Move:
+                return "Move";
+            case Action::Jump:
+                return "Jump";
+            case Action::Attack:
+                return "Attack";
+        }
+        return "Unknown action";
+    }
+*/
 };
 
 struct GameStateChangeEvent : public Event {

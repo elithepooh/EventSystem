@@ -41,9 +41,6 @@ Player::~Player() {
 
 void Player::onPlayerInput(const PlayerInputEvent& inputEvent) {
 
-    //std::cout << "On Player Input was called" << std::endl;
-    //std::cout << inputEvent.printAction() << std::endl;    
-
     switch (inputEvent.action) {
     case PlayerInputEvent::Action::MOVE:
 
