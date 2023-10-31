@@ -68,11 +68,11 @@ This class demonstrates the practical application of the Event System, as a play
 
 2. Implement the `clone` method as in the example:
 ```cpp
-class PlayerInputEvent : public Event {
+class YourEvent : public Event {
 public:
     // ...
     virtual std::shared_ptr<Event> clone() const override {
-        return std::make_shared<PlayerInputEvent>(*this);
+        return std::make_shared<YourEvent>(*this);
     }
 };
 ```
