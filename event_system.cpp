@@ -32,3 +32,24 @@ void EventDispatcher::processEvents() {
         }
     }
 }
+
+void EventDispatcher::processEventsOfType(int eventType) {
+    std::queue<std::shared_ptr<Event>> remainingEvents;
+
+    while (!eventQueue.empty()) {
+        std::shared_ptr<Event> e = eventQueue.front();
+        eventQueue.pop();
+
+        if (e->getType() == eventType) {
+            for (const auto& pair : listeners[eventType]) {
+                pair.second(*e);
+            }
+        } else {
+            remainingEvents.push(e);
+        }
+    }
+
+    // Swap the queues to retain unprocessed events
+    eventQueue.swap(remainingEvents);
+}
+

@@ -35,6 +35,7 @@ public:
     void removeListener(int eventType, ListenerID id);
     void queueEvent(const Event& e);
     void processEvents();
+    void processEventsOfType(int eventType);
 
 private:
     // There is a separate vector of listeners for each event type

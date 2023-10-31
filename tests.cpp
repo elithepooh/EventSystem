@@ -95,5 +95,41 @@ TEST_CASE("Multiple listeners can respond to the same event", "[EventDispatcher]
     REQUIRE(callCount2 == 1);
 }
 
+TEST_CASE("EventDispatcher processes only specific type of events", "[EventDispatcher]") {
+    EventDispatcher dispatcher;
+
+    // A flag to track if our event listener was called
+    bool playerInputEventCalled = false;
+    bool gameStateChangeEventCalled = false;
+
+    dispatcher.addListener(EventType<PlayerInputEvent>::getId(), 
+                           [&playerInputEventCalled](const Event& e) {
+                               playerInputEventCalled = true;
+                           });
+
+    dispatcher.addListener(EventType<GameStateChangeEvent>::getId(),
+                           [&gameStateChangeEventCalled](const Event& e) {
+                               gameStateChangeEventCalled = true;
+                           });
+
+    PlayerInputEvent playerInputEvent;
+    GameStateChangeEvent gameStateChangeEvent;
+
+    dispatcher.queueEvent(playerInputEvent);
+    dispatcher.queueEvent(gameStateChangeEvent);
+
+    // Process only PlayerInputEvent
+    dispatcher.processEventsOfType(EventType<PlayerInputEvent>::getId());
+
+    REQUIRE(playerInputEventCalled == true);
+    REQUIRE(gameStateChangeEventCalled == false);
+
+    // Let's process all events to ensure the GameStateChangeEvent is still in the queue
+    dispatcher.processEvents();
+
+    REQUIRE(gameStateChangeEventCalled == true);
+}
+
+
 
    

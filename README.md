@@ -1,6 +1,6 @@
 # Event System for a 2D Game Engine in C++11
 
-
+A basic data-oriented event system. The focus is on making the addition of new event types and listeners as simple as possible. The dipatcher has functionality for processing the events of only a particular type. 
 
 ## Overview
 
@@ -35,6 +35,8 @@ The Event Dispatcher is responsible for managing listeners and dispatching event
 - `queueEvent(const Event& e)`: Adds an event to the queue for future processing.
 
 - `processEvents()`: Processes all events in the queue, calling the associated listeners.
+
+- `processEventsOfType(int eventType)`: Processes all events in the queue that are of a prticular type.
 
 ## Event Types
 
